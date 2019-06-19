@@ -3,13 +3,13 @@
 # The array is going to be a straight one, because we've already established that getting the peg to
 # go around the whole loop is possible
 
-import pygame
+import pygame, thorpy
 
 pygame.init()
 
-win = pygame.display.set_mode((1000, 500))
+win = pygame.display.set_mode((1000, 1000))
 
-win.fill((255,255,255))
+win.fill((255, 255, 255))
 
 pygame.display.set_caption("Peg jump test")
 
@@ -31,10 +31,10 @@ class Peg:
         self.colour = c
         board[0].players_on_square.append(self)
 
-    def move_peg(self, dice_no):
+    def move_peg(self):
         board[self.pos].players_on_square.remove(self)
-        board[self.pos+dice_no].players_on_square.append(self)
-        self.pos += dice_no
+        board[self.pos+1].players_on_square.append(self)
+        self.pos += 1
 
     def single_turn(self):
         pygame.time.delay(10000)
@@ -71,6 +71,8 @@ def print_board():
             pygame.draw.circle(win, peg.colour, (pos+25, playerpos), 5, 1)
             playerpos += 12
         pos += 80
+
+
 p1 = Place("SQ1", 100, 10)
 p2 = Place("SQ2", 200, 15)
 p3 = Place("SQ3", 300, 20)
@@ -88,37 +90,37 @@ peg1 = Peg((255, 0, 0))
 peg2 = Peg((0, 255, 0))
 peg3 = Peg((0, 0, 255))
 
-peg2.move_peg(7)
-peg3.move_peg(4)
+butt1 = thorpy.make_button("Move Red", func=peg1.move_peg)
+butt2 = thorpy.make_button("Move Green", func=peg2.move_peg)
+butt3 = thorpy.make_button("Move Blue", func=peg3.move_peg)
+
+box = thorpy.Box(elements=[butt1, butt2, butt3])
+
+menu = thorpy.Menu(box)
+for element in menu.get_population():
+    element.surface = win
+    print("Confirmed")
+box.set_topleft((50, 350))
+box.blit()
+box.update()
+
+peg2.move_peg()
+peg3.move_peg()
 
 run = True
 
 turn_count = 1
 
 while run:
-    pygame.time.delay(1000)
+
     print_board()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-            break
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_RETURN] and turn_count == 1:
-        peg1.move_peg(1)
-        turn_count = 2
+            pygame.quit()
+            quit()
+        menu.react(event)
         pygame.display.update()
-        continue
-    if keys[pygame.K_RETURN] and turn_count == 2:
-        peg2.move_peg(1)
-        turn_count = 3
-        pygame.display.update()
-        continue
-    if keys[pygame.K_RETURN] and turn_count == 3:
-        peg3.move_peg(1)
-        turn_count = 1
-        pygame.display.update()
-        continue
-    pygame.display.update()
-
-exit()
+pygame.quit()
+quit()
 
