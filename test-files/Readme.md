@@ -18,6 +18,6 @@ Another very simple thing. It's a basic pygame test where you can move a small p
 
 * Row-based movement
 
-Here, we have a row of monopoly places. The goal in this test was to allow this player to jump from one square to the next. 
+Here, we have the full monopoly board and we let two players jump around the whole board. I had to create a proper button system to make this work properly.
 
-![alt text](https://raw.githubusercontent.com/pranay-venkatesh/Monopoly_AI/master/test-files/pics/rowbasedmovement.jpg)
+![alt text](https://raw.githubusercontent.com/pranay-venkatesh/Monopoly/master/test-files/pics/pegjumppic.png)
