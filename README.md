@@ -1,2 +1,3 @@
-# Monopoly_AI
-Creating an AI to play Monopoly
+# Monopoly
+
+Two player monopoly game. Eventually looking to make a bot or AI play.
