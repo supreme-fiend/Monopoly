@@ -10,4 +10,4 @@ So, very simple stuff. Two pegs : one red and one blue move about a board and bu
 
 ![alt text](https://raw.githubusercontent.com/pranay-venkatesh/Monopoly/master/two_players_screenshots/1.png)
 
-![alt text](https://https://raw.githubusercontent.com/pranay-venkatesh/Monopoly/master/two_players_screenshots/2.png)
+![alt_text](https://https://raw.githubusercontent.com/pranay-venkatesh/Monopoly/master/two_players_screenshots/2.png)
